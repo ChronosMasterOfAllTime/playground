@@ -105,4 +105,11 @@ func RunMigrations() {
 			os.Exit(1)
 		}
 	}
+
+	err = DB.Exec("CREATE TABLE my_models (id INTEGER PRIMARY KEY AUTOINCREMENT, var_char TEXT, created_at DATETIME, updated_at DATETIME, deleted_at DATETIME)").Error
+
+	if err != nil {
+		log.Printf("Failed to create table for my_models, got error %v\n", err)
+		os.Exit(1)
+	}
 }

@@ -29,6 +29,20 @@ type User struct {
 	Active    bool
 }
 
+type RedactedUser struct {
+	gorm.Model
+	Name string
+}
+
+type UserPet struct {
+	RedactedUser
+	PetName string // `gorm:"column:pet_name"`
+}
+
+func (UserPet) TableName() string {
+	return "users"
+}
+
 type Account struct {
 	gorm.Model
 	UserID sql.NullInt64
